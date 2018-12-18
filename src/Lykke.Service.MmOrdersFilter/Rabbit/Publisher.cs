@@ -10,12 +10,12 @@ namespace Lykke.Service.MmOrdersFilter.Rabbit
 {
     public class Publisher<T> : IDisposable where T : IRoutable
     {
-        private readonly ExchangeSetting _exchangeSetting;
+        private readonly DestinationExchangeSetting _exchangeSetting;
         private readonly ILogFactory _logFactory;
         private RabbitMqPublisher<T> _publisher;
 
         public Publisher(
-            ExchangeSetting exchangeSetting,
+            DestinationExchangeSetting exchangeSetting,
             ILogFactory logFactory)
         {
             _exchangeSetting = exchangeSetting;

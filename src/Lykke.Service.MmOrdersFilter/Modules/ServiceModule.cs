@@ -41,10 +41,8 @@ namespace Lykke.Service.MmOrdersFilter.Modules
 
                     foreach (var mapping in _appSettings.CurrentValue.MmOrdersFilterService.ExchangeMappings)
                     {
-                        var subscriber = new Subscriber
-                        (mapping.Source,
+                        var subscriber = new Subscriber(mapping.Source,
                             ((int) MessageType.Order).ToString(),
-                            Environment.MachineName,
                             _appSettings.CurrentValue.MmOrdersFilterService.RelevantWalletIds,
                             new Publisher<TradesMessage>(mapping.Destination, ctx.Resolve<ILogFactory>()),
                             ctx.Resolve<ILogFactory>());

@@ -4,20 +4,30 @@ using Lykke.SettingsReader.Attributes;
 namespace Lykke.Service.MmOrdersFilter.Settings
 {
     [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
-    public class ExchangeSetting
+    public class SourceExchangeSetting
     {
         [AmqpCheck]
         public string ConnectionString { set; get; }
         
         public string ExchangeName { set; get; }
         
+        public string QueueSuffix { set; get; }
+    }
+    
+    [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
+    public class DestinationExchangeSetting
+    {
+        [AmqpCheck]
+        public string ConnectionString { set; get; }
+        
+        public string ExchangeName { set; get; }
     }
     
     [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
     public class ExchangeMapping
     {
-        public ExchangeSetting Source { set; get; }
+        public SourceExchangeSetting Source { set; get; }
         
-        public ExchangeSetting Destination { set; get; }
+        public DestinationExchangeSetting Destination { set; get; }
     }
 }

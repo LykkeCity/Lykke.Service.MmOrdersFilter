@@ -15,25 +15,22 @@ namespace Lykke.Service.MmOrdersFilter.Rabbit
 {
     public class Subscriber : IDisposable
     {
-        private readonly ExchangeSetting _exchangeSettings;
+        private readonly SourceExchangeSetting _exchangeSettings;
         private readonly string _routingKey;
-        private readonly string _queueSuffix;
         private readonly string[] _relevantWalletIds;
         private readonly Publisher<TradesMessage> _publisher;
         private RabbitMqSubscriber<ExecutionEvent> _subscriber;
         private readonly ILogFactory _logFactory;
 
         public Subscriber(
-            ExchangeSetting exchangeSettings,
+            SourceExchangeSetting exchangeSettings,
             string routingKey,
-            string queueSuffix,
             string[] relevantWalletIds,
             Publisher<TradesMessage> publisher,
             ILogFactory logFactory)
         {
             _exchangeSettings = exchangeSettings;
             _routingKey = routingKey;
-            _queueSuffix = queueSuffix;
             _relevantWalletIds = relevantWalletIds;
             _publisher = publisher;
             _logFactory = logFactory;
@@ -46,7 +43,7 @@ namespace Lykke.Service.MmOrdersFilter.Rabbit
             RabbitMqSubscriptionSettings settings = RabbitMqSubscriptionSettings.ForSubscriber(
                     _exchangeSettings.ConnectionString,
                     _exchangeSettings.ExchangeName,
-                    _queueSuffix)
+                    _exchangeSettings.QueueSuffix)
                 .UseRoutingKey(_routingKey);
 
             settings.MakeDurable();
