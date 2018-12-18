@@ -81,7 +81,7 @@ namespace Lykke.Service.MmOrdersFilter.Rabbit
 
             foreach (var walletId in _relevantWalletIds)
             {
-                var relevantTrades = trades.Where(x => x.WalletId == walletId).OrderBy(x => x.Id);
+                var relevantTrades = trades.Where(x => x.WalletId == walletId).OrderBy(x => x.Index);
 
                 if (relevantTrades.Any())
                 {
@@ -128,7 +128,7 @@ namespace Lykke.Service.MmOrdersFilter.Rabbit
         {
             var reports = new List<Trade>();
 
-            for (int i = 0; i < order.Trades.Count; i++)
+            for (int i = 0; i < order?.Trades?.Count; i++)
             {
                 var trade = order.Trades[i];
 
@@ -155,7 +155,8 @@ namespace Lykke.Service.MmOrdersFilter.Rabbit
                     OppositeClientId = trade.OppositeWalletId,
                     OppositeLimitOrderId = trade.OppositeOrderId,
                     OppositeSideVolume = Math.Abs(decimal.Parse(trade.QuotingVolume)),
-                    RemainingVolume = decimal.Parse(order.RemainingVolume)
+                    RemainingVolume = decimal.Parse(order.RemainingVolume),
+                    Index = trade.Index
                 };
 
                 reports.Add(report);

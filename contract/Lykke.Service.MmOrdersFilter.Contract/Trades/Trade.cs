@@ -50,5 +50,8 @@ namespace Lykke.Service.MmOrdersFilter.Contract.Trades
 
         [ProtoMember(14, IsRequired = true)]
         public string OppositeLimitOrderId { get; set; }
+
+        [ProtoMember(14, IsRequired = true)]
+        public int Index { get; set; }
     }
 }
