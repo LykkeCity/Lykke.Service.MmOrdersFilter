@@ -1,0 +1,29 @@
+MmOrdersFilterService:
+    Db:
+        LogsConnString:
+            settings-key: MmOrdersFilterService-LogsConnString
+            types:
+              - AzureTableStorage
+
+    RelevantWalletIds:
+      settings-key: MmOrdersFilterService-RelevantWalletIds
+      types:
+        - JsonArray
+
+    ExchangeMappings:
+      settings-key: MmOrdersFilterService-ExchangeMappings
+      types:
+        - JsonArray
+
+SlackNotifications:
+    AzureQueue:
+        ConnectionString:
+            settings-key: SlackNotificationsConnString
+            types:
+                - AzureTableStorage
+        QueueName:
+            settings-key: SlackQueueName
+MonitoringServiceClient:
+    MonitoringServiceUrl:
+        settings-key: MonitoringServiceUrl
+
