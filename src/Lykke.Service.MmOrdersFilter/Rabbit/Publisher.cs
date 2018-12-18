@@ -33,7 +33,7 @@ namespace Lykke.Service.MmOrdersFilter.Rabbit
                 .ForPublisher(_exchangeSetting.ConnectionString, _exchangeSetting.ExchangeName);
 
             _publisher = new RabbitMqPublisher<T>(_logFactory, settings)
-                .SetSerializer(new JsonMessageSerializer<T>())
+                .SetSerializer(new ProtobufMessageSerializer<T>())
                 .DisableInMemoryQueuePersistence()
                 .SetPublishStrategy(new DirectPublishStrategy(settings))
                 .Start();
