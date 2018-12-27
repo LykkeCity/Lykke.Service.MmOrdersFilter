@@ -5,6 +5,7 @@ using Lykke.RabbitMqBroker.Publisher;
 using Lykke.RabbitMqBroker.Subscriber;
 using Lykke.Service.MmOrdersFilter.Contract;
 using Lykke.Service.MmOrdersFilter.Settings;
+using Lykke.Service.MmOrdersFilter.Settings.ExchangeSettings;
 
 namespace Lykke.Service.MmOrdersFilter.Rabbit
 {

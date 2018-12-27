@@ -1,6 +1,6 @@
 MmOrdersFilterService:
     Db:
-        LogsConnString:
+        LogsConnectionString:
             settings-key: MmOrdersFilterService-LogsConnString
             types:
               - AzureTableStorage

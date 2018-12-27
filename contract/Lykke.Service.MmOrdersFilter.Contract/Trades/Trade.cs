@@ -25,7 +25,7 @@ namespace Lykke.Service.MmOrdersFilter.Contract.Trades
         public TradeType Type { get; set; }
 
         [ProtoMember(6, IsRequired = true)]
-        public DateTime Time { get; set; }
+        public DateTime Timestamp { get; set; }
 
         [ProtoMember(7, IsRequired = true)]
         public decimal Price { get; set; }
@@ -40,13 +40,13 @@ namespace Lykke.Service.MmOrdersFilter.Contract.Trades
         public TradeStatus Status { get; set; }
 
         [ProtoMember(11, IsRequired = true)]
-        public decimal OppositeSideVolume { get; set; }
+        public decimal OppositeVolume { get; set; }
 
         [ProtoMember(12, IsRequired = true)]
         public string WalletId { get; set; }
         
         [ProtoMember(13, IsRequired = true)]
-        public string OppositeClientId { get; set; }
+        public string OppositeWalletId { get; set; }
 
         [ProtoMember(14, IsRequired = true)]
         public string OppositeLimitOrderId { get; set; }

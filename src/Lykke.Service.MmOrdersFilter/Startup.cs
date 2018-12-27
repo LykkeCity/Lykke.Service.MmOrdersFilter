@@ -31,7 +31,7 @@ namespace Lykke.Service.MmOrdersFilter
                 options.Logs = logs =>
                 {
                     logs.AzureTableName = "MmOrdersFilterLog";
-                    logs.AzureTableConnectionStringResolver = settings => settings.MmOrdersFilterService.Db.LogsConnString;
+                    logs.AzureTableConnectionStringResolver = settings => settings.MmOrdersFilterService.Db.LogsConnectionString;
 
                     // TODO: You could add extended logging configuration here:
                     /* 

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Common;
 using Lykke.Common.Log;
 using Lykke.MatchingEngine.Connector.Models.Events;
 using Lykke.RabbitMqBroker;
@@ -9,6 +10,7 @@ using Lykke.RabbitMqBroker.Subscriber;
 using Lykke.Service.MmOrdersFilter.Contract;
 using Lykke.Service.MmOrdersFilter.Contract.Trades;
 using Lykke.Service.MmOrdersFilter.Settings;
+using Lykke.Service.MmOrdersFilter.Settings.ExchangeSettings;
 using Trade = Lykke.Service.MmOrdersFilter.Contract.Trades.Trade;
 
 namespace Lykke.Service.MmOrdersFilter.Rabbit
@@ -85,10 +87,15 @@ namespace Lykke.Service.MmOrdersFilter.Rabbit
 
                 if (relevantTrades.Any())
                 {
-                    _publisher.Publish(new TradesMessage
+                    var message = new TradesMessage
                     {
                         Trades = relevantTrades.ToList()
-                    });
+                    };   
+                    
+                    Console.WriteLine(message.GetRouteKey());
+                    Console.WriteLine(message.ToJson());
+                    
+                    _publisher.Publish(message);
                 }
             }
 
@@ -148,13 +155,13 @@ namespace Lykke.Service.MmOrdersFilter.Rabbit
                     LimitOrderId = order.ExternalId,
                     Status = executionStatus,
                     Type = tradeType,
-                    Time = trade.Timestamp,
+                    Timestamp = trade.Timestamp,
                     Price = decimal.Parse(trade.Price),
                     Volume = Math.Abs(decimal.Parse(trade.BaseVolume)),
                     WalletId = order.WalletId,
-                    OppositeClientId = trade.OppositeWalletId,
+                    OppositeWalletId = trade.OppositeWalletId,
                     OppositeLimitOrderId = trade.OppositeOrderId,
-                    OppositeSideVolume = Math.Abs(decimal.Parse(trade.QuotingVolume)),
+                    OppositeVolume = Math.Abs(decimal.Parse(trade.QuotingVolume)),
                     RemainingVolume = decimal.Parse(order.RemainingVolume),
                     Index = trade.Index
                 };

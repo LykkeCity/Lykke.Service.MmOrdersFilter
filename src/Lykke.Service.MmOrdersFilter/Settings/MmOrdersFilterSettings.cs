@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using JetBrains.Annotations;
+using Lykke.Service.MmOrdersFilter.Settings.ExchangeSettings;
 
 namespace Lykke.Service.MmOrdersFilter.Settings
 {
