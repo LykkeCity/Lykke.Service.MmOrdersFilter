@@ -31,9 +31,6 @@
     <ProjectReference Include="..\Lykke.Service.MmOrdersFilter.Domain\Lykke.Service.MmOrdersFilter.Domain.csproj" />
     <ProjectReference Include="..\Lykke.Service.MmOrdersFilter.DomainServices\Lykke.Service.MmOrdersFilter.DomainServices.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
   <Target Name="PrepublishScript" BeforeTargets="PrepareForPublish">
     <ItemGroup>
       <DocFile Include="$(OutputPath)$(AssemblyName).xml" />
